@@ -1,3 +1,4 @@
+sudo a2enmod rewrite
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -23,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8000';
+$config['base_url'] = 'ec2-35-160-14-215.us-west-2.compute.amazonaws.com';
 
 /*
 |--------------------------------------------------------------------------
