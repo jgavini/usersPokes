@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Pokes extends CI_Controller {
-//PANDA PANDA PANDA PANDA PANDA PANDA
+
 	public function pokeUser()
 	{
 		$pokeData = $this->input->post();
-		$poke_confirm = $this->poke->checkPokeStatus($pokeData);  
+		$poke_confirm = $this->Poke->checkPokeStatus($pokeData);  
 		if($poke_confirm)
 		{
-			$result = $this->poke->addToPoke($pokeData);
+			$result = $this->Poke->addToPoke($pokeData);
 			if($result)
 			{
 				redirect('/profile');
@@ -21,7 +21,7 @@ class Pokes extends CI_Controller {
 		}
 		else
 		{
-			$result = $this->poke->addPoke($pokeData);
+			$result = $this->Poke->addPoke($pokeData);
 			if($result)
 			{
 				$this->session->set_flashdata("success", "You never poked them before!");
@@ -35,4 +35,3 @@ class Pokes extends CI_Controller {
 		}
 	}
 }
-//HEY KELVIN!!!!!!!

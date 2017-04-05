@@ -12,7 +12,7 @@ class Users extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
-//Hey there Kelvin!!!
+
 	public function register()
 	{
 		$userData = $this->input->post();
@@ -24,9 +24,9 @@ class Users extends CI_Controller {
 		$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required');		
 		if($this->form_validation->run())
 		{
-			$this->user->registerUser($userData);
+			$this->User->registerUser($userData);
 			$this->session->set_flashdata('success', "You are officially registered! Please Login and begin POKING around!<br><img src='https://media.giphy.com/media/E49KOgnZDmLXq/giphy.gif'>");
-			redirect('/');
+			$this->load->view('login');
 		}
 		else
 		{
@@ -34,7 +34,7 @@ class Users extends CI_Controller {
 			redirect('/');
 		}		
 	}
-//Hey Kelvin, just wanted to see how the grading is going!!!!
+
 	public function login()
 	{
 		$loginData = $this->input->post();
@@ -43,7 +43,7 @@ class Users extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		if($this->form_validation->run())
 		{
-			$user = $this->user->loginUser($loginData);
+			$user = $this->User->loginUser($loginData);
 			if($user)
 			{
 				$this->session->set_userdata('logged_in', TRUE);
@@ -65,23 +65,23 @@ class Users extends CI_Controller {
 			redirect('/');
 		}
 	}
-//PANDA PANDA PANDA PANDA PANDA PANDA
+
 	public function profile()
 	{
 		$id = $this->session->userdata('id');
-		$users = $this->user->getAllUsers($id);
-		$pokes = $this->poke->getAllPokes($id);
+		$users = $this->User->getAllUsers($id);
+		$pokes = $this->Poke->getAllPokes($id);
 		$this->load->view('profile', array('users' => $users, 'pokes' => $pokes));
 	}
 
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('Users/logoutMessage');
+		redirect('users/logoutMessage');
 	}
 	public function logoutMessage(){
 		$this->session->set_flashdata("logout", "You have logged out! Please POKE again soon =)<br><img src='https://media.giphy.com/media/TObbUke0z8Mo/giphy.gif'>");
 		redirect('/');
 	}
 }
-//HEY KELVIN!!!!!!!
+
